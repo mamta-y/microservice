@@ -92,8 +92,7 @@ function validateComments(comment){
     const schema = Joi.object({
        coment:Joi.string().required().min(5).max(50).trim(),
        id:Joi.string().required()
-       
-    });
+          });
     return schema.validate(comment);
 };
 app.listen(port, ()=>{
