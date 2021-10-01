@@ -4,7 +4,20 @@ const app = express();
 const gateway= require('fast-gateway');
 const port = 9090;
 
+    // function auth(req,res,next){
+    // const token= req.header('token');//
+    //  if(!token) return res.status(401).send('access deneid......no token provided');
+    //  try{
+    // const decodedtoken=jwt.verify(token,'Secretkey')
+    // console.log(decodedtoken);
+    // req.user=decodedtoken
+    // next();
+    // }
+    // catch(err){
+    //     res.status(400).send('invalid token.....')
+    // }}
     
+        
 const auth=(req,res,next)=>{
     if(req.headers.token && req.headers.token !=''){
         next();
@@ -18,7 +31,7 @@ const server = gateway({
     routes:[{
         prefix:'/post', 
         target:'http://localhost:1000/',
-      // middlewares:[auth]
+       middlewares:[auth]
     },
     {
         prefix:'/comment', 
